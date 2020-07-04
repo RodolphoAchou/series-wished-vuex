@@ -1,3 +1,3 @@
 import { services as auth } from '@/modules/auth'
 
-export default auth
+export default { auth }
