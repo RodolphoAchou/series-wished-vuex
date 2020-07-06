@@ -25,7 +25,7 @@ export const ActionCheckToken = ({ dispatch, state }) => {
 }
 
 export const ActionLoadSession = ({ dispatch }) => {
-  return new Promise(async (resolve, reject) => {
+  return async (resolve, reject) => {
     try {
       const { data: { user } } = await services.auth.loadSession()
       dispatch('ActionSetUser', user)
@@ -34,7 +34,7 @@ export const ActionLoadSession = ({ dispatch }) => {
       dispatch('ActionSignOut')
       reject(err)
     }
-  })
+  }
 }
 
 export const ActionSetUser = ({ commit }, payload) => {
