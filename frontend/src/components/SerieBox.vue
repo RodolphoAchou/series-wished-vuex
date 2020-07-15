@@ -13,12 +13,12 @@
       <h3 class="text-center mb-0">{{ serie.title }}</h3>
       <div class="row text-center mt-3">
         <div class="col">
-          <button class="btn btn-sm btn-outline-primary" @click="toggleWatchList">
+          <button class="btn btn-sm btn-outline-primary" @click.prevent="toggleWatchList">
             {{ serie.watchlist ? 'Remover da' : 'Adicionar na'}} watchlist
           </button>
         </div>
         <div class="col">
-          <button class="btn btn-sm btn-outline-warning" @click="toggleWatchedList">
+          <button class="btn btn-sm btn-outline-warning" @click.prevent="toggleWatchedList">
             {{ serie.watched ? 'Remover da' : 'Adicionar na'}} watchedlist
           </button>
         </div>
@@ -28,11 +28,18 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   props: {
     serie: { type: Object, required: true }
   },
   methods: {
+    ...mapActions('watchedlist', [
+      'ActionFindWatchedList',
+      'ActionAddOnWatchedlist',
+      'ActionDeleteFromWatchedlist'
+    ]),
     toggleWatchList () {
       if (this.serie.watchlist) {
         console.log('Remover da watchlist')
@@ -40,11 +47,16 @@ export default {
         console.log('Adicionar na watchlist')
       }
     },
-    toggleWatchedList () {
-      if (this.serie.watched) {
-        console.log('Remover da watchedlist')
-      } else {
-        console.log('Adicionar na watchedlist')
+    async toggleWatchedList () {
+      try {
+        if (this.serie.watched) {
+          await this.ActionDeleteFromWatchedlist(this.serie.id)
+        } else {
+          await this.ActionAddOnWatchedlist({ serieId: this.serie.id })
+        }
+        this.ActionFindxWatchedList()
+      } catch (error) {
+        console.error(error)
       }
     }
   }
