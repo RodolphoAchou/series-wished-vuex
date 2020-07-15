@@ -35,28 +35,58 @@ export default {
     serie: { type: Object, required: true }
   },
   methods: {
+    ...mapActions('serieslist', ['ActionFindSerieslist']),
     ...mapActions('watchedlist', [
-      'ActionFindWatchedList',
+      'ActionFindWatchedlist',
       'ActionAddOnWatchedlist',
       'ActionDeleteFromWatchedlist'
     ]),
-    toggleWatchList () {
-      if (this.serie.watchlist) {
-        console.log('Remover da watchlist')
-      } else {
-        console.log('Adicionar na watchlist')
+    ...mapActions('watchlist', [
+      'ActionFindWatchlist',
+      'ActionAddOnWatchlist',
+      'ActionDeleteFromWatchlist'
+    ]),
+    async toggleWatchList () {
+      try {
+        if (this.serie.watchlist) {
+          await this.ActionDeleteFromWatchlist(this.serie.id)
+          window.alert('Deletada com sucesso!')
+        } else {
+          await this.ActionAddOnWatchlist({ serieId: this.serie.id })
+          window.alert('Adicionada com sucesso!')
+        }
+        this.refresh()
+      } catch (error) {
+        window.alert('Não foi possivel adicionar!')
+        console.error(error)
       }
     },
     async toggleWatchedList () {
       try {
         if (this.serie.watched) {
           await this.ActionDeleteFromWatchedlist(this.serie.id)
+          window.alert('Deletada com sucesso!')
         } else {
           await this.ActionAddOnWatchedlist({ serieId: this.serie.id })
+          window.alert('Adicionada com sucesso!')
         }
-        this.ActionFindxWatchedList()
+        this.refresh()
       } catch (error) {
+        window.alert('Não foi possivel adicionar!')
         console.error(error)
+      }
+    },
+    refresh () {
+      const { name } = this.$route
+
+      if (name === 'series') {
+        return this.ActionFindSerieslist()
+      }
+      if (name === 'watchedlist') {
+        return this.ActionFindWatchedlist()
+      }
+      if (name === 'watchlist') {
+        return this.ActionFindWatchlist()
       }
     }
   }
