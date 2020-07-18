@@ -13,7 +13,8 @@ Projeto usando VUE.JS para controle de desejos de series de TV, desenvolvido com
 
 # Telas da aplicação
 
-
+![Menu](https://user-images.githubusercontent.com/55460568/87852817-96b41a00-c8db-11ea-8484-e54523c763d7.jpg)
+![Lista de Series](https://user-images.githubusercontent.com/55460568/87852816-94ea5680-c8db-11ea-9719-53bbe4f00469.png)
 
 # Instalação
 
