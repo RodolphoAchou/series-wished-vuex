@@ -18,14 +18,15 @@ Projeto usando VUE.JS para controle de desejos de series de TV, desenvolvido com
 # Instalação
 
 1. Primeiro, precisa ter o NODEJS and YARN instalado, depois, clonar o projeto via HTTPS, rodando os seguinte comando:
-git clone https://github.com/RodolphoAchou/series-wished-vuex.git
+
+`git clone https://github.com/RodolphoAchou/series-wished-vuex.git`
 
 2. Acessar a pasta do backend, instalar as dependencias e iniciar o serviço
-cd backend
-yarn
-yarn start
+`cd backend`
+`yarn`
+`yarn start`
 
 3. Acessar a pasta do frontend, instalar as dependencias e iniciar o serviço
-cd frontend
-yarn
-yarn serve
+`cd frontend`
+`yarn`
+`yarn serve`
