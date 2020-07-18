@@ -22,12 +22,14 @@ Projeto usando VUE.JS para controle de desejos de series de TV, desenvolvido com
 
 `git clone https://github.com/RodolphoAchou/series-wished-vuex.git`
 
-2. Acessar a pasta do backend, instalar as dependencias e iniciar o serviço
+2. Acessar a pasta do backend, instalar as dependencias e iniciar o serviço:
+
 `cd backend`
 `yarn`
 `yarn start`
 
-3. Acessar a pasta do frontend, instalar as dependencias e iniciar o serviço
+3. Acessar a pasta do frontend, instalar as dependencias e iniciar o serviço: 
+
 `cd frontend`
 `yarn`
 `yarn serve`
